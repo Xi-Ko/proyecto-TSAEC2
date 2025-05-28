@@ -78,7 +78,7 @@
     return {
       avatar:
         localStorage.getItem("user_avatar") ||
-        "/frontend/src/assets/images/missa.webp",
+        "/src/assets/images/missa.webp",
       nombre: localStorage.getItem("user_nombre") || "Usuario TSAEC",
       comentarios: Number(localStorage.getItem("user_comentarios") || 0),
       apoyos: Number(localStorage.getItem("user_apoyos") || 0),
@@ -246,7 +246,7 @@
 
     // Ir a perfil completo
     win.querySelector(".profile-config-btn").onclick = () => {
-      window.location.href = "/frontend/src/pages/perfil.html";
+      window.location.href = "/src/pages/perfil.html";
     };
   }
 

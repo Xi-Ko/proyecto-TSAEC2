@@ -208,13 +208,13 @@
         .getElementById("pdf-select")
         .addEventListener("change", function (e) {
           const iframe = document.getElementById("pdf-viewer");
-          iframe.src = `/frontend/src/js/pdfjs/web/viewer.html?file=${encodeURIComponent(
+          iframe.src = `/src/js/pdfjs/web/viewer.html?file=${encodeURIComponent(
             e.target.value
           )}`;
         });
 
       // Cargar el header
-      fetch("/publicsrc/components/header/header.html")
+      fetch("/src/components/header/header.html")
         .then((response) => response.text())
         .then((data) => {
           document.getElementById("header-container").innerHTML = data;
