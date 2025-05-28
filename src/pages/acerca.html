@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Acerca de - TSAEC</title>
+    <link rel="stylesheet" href="/src/styles/base.css" />
+    <link rel="stylesheet" href="/src/components/header/header.css" />
+    <link rel="stylesheet" href="/src/styles/acerca.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="ocean-overlay"></div>
+
+    <!-- Include Header -->
+    <div id="header-container"></div>
+
+    <main class="container">
+      <section class="about-hero glass-card">
+        <h1>Nuestra Historia</h1>
+        <p class="subtitle">
+          Transformando la movilidad de Calama hacia un futuro más sustentable
+        </p>
+      </section>
+
+      <section class="mission-vision glass-card">
+        <div class="mission">
+          <i class="fas fa-bullseye"></i>
+          <h2>Misión</h2>
+          <p>
+            Promover y facilitar el uso de transportes sustentables en Calama,
+            reduciendo la huella de carbono y mejorando la calidad de vida de
+            nuestros ciudadanos.
+          </p>
+        </div>
+        <div class="vision">
+          <i class="fas fa-eye"></i>
+          <h2>Visión</h2>
+          <p>
+            Ser el referente en movilidad sustentable de la región, creando una
+            ciudad más limpia, eficiente y amigable con el medio ambiente.
+          </p>
+        </div>
+      </section>
+
+      <section class="values glass-card">
+        <h2>Nuestros Valores</h2>
+        <div class="values-grid">
+          <div class="value-item">
+            <i class="fas fa-leaf"></i>
+            <h3>Sustentabilidad</h3>
+            <p>Compromiso con el medio ambiente y las futuras generaciones.</p>
+          </div>
+          <div class="value-item">
+            <i class="fas fa-handshake"></i>
+            <h3>Colaboración</h3>
+            <p>Trabajo conjunto con la comunidad y autoridades locales.</p>
+          </div>
+          <div class="value-item">
+            <i class="fas fa-lightbulb"></i>
+            <h3>Innovación</h3>
+            <p>Búsqueda constante de soluciones creativas y efectivas.</p>
+          </div>
+          <div class="value-item">
+            <i class="fas fa-users"></i>
+            <h3>Comunidad</h3>
+            <p>Fortalecimiento del tejido social a través de la movilidad.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="timeline glass-card">
+        <h2>Nuestra Trayectoria</h2>
+        <div class="timeline-container">
+          <div class="timeline-item">
+            <div class="date">2023</div>
+            <div class="content">
+              <h3>Nacimiento de TSAEC</h3>
+              <p>
+                Inicio del proyecto con el objetivo de transformar la movilidad
+                en Calama.
+              </p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="date">2024</div>
+            <div class="content">
+              <h3>Primera Ciclovía</h3>
+              <p>Implementación de la primera red de ciclovías en la ciudad.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="date">2025</div>
+            <div class="content">
+              <h3>Expansión</h3>
+              <p>
+                Lanzamiento de nuevas iniciativas y programas de movilidad
+                sustentable.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="partners glass-card">
+        <h2>Nuestros Aliados</h2>
+        <div class="partners-grid">
+          <div class="partner-item">
+            <img
+              src="/src/assets/images/logocalama.webp"
+              alt="Municipio de Calama"
+            />
+            <h3>Municipio de Calama</h3>
+          </div>
+          <div class="partner-item">
+            <img
+              src="/src/assets/images/logoA27.webp"
+              alt="Universidad"
+            />
+            <h3>Liceo Jorge Alessandri Rodrigues A-27</h3>
+          </div>
+          <div class="partner-item">
+            <img src="#" alt="Empresas Locales" />
+            <h3>Ustedes</h3>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="main-footer">
+      <div class="social-links">
+        <a
+          href="https://www.instagram.com/tsaec_calama?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+          ><i class="fab fa-instagram"></i
+        ></a>
+        <a href="#"><i class="fab fa-facebook"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+      </div>
+      <p>&copy; 2025 TSAEC. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="/src/components/header/header.js"></script>
+    <script>
+      // Load header and initialize menu
+      fetch("/src/components/header/header.html")
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("header-container").innerHTML = data;
+          // Initialize header functionality after loading
+          const menuToggle = document.querySelector(".menu-toggle");
+          const navLinks = document.querySelector(".nav-links");
+          const header = document.querySelector(".header-wave");
+
+          // Toggle menu
+          menuToggle.addEventListener("click", function () {
+            menuToggle.classList.toggle("active");
+            navLinks.classList.toggle("active");
+          });
+
+          // Close menu when clicking outside
+          document.addEventListener("click", function (event) {
+            const isClickInside = header.contains(event.target);
+            if (!isClickInside && navLinks.classList.contains("active")) {
+              menuToggle.classList.remove("active");
+              navLinks.classList.remove("active");
+            }
+          });
+
+          // Close menu when clicking a link
+          navLinks.querySelectorAll("a").forEach((link) => {
+            link.addEventListener("click", function () {
+              menuToggle.classList.remove("active");
+              navLinks.classList.remove("active");
+            });
+          });
+
+          // Add active class to current page link
+          const currentPage = window.location.pathname;
+          navLinks.querySelectorAll("a").forEach((link) => {
+            if (link.getAttribute("href") === currentPage) {
+              link.classList.add("active");
+            }
+          });
+
+          // Animación del header al hacer scroll
+          let lastScrollTop = 0;
+          const headerWave = document.querySelector(".header-wave");
+
+          window.addEventListener("scroll", () => {
+            const scrollTop =
+              window.pageYOffset || document.documentElement.scrollTop;
+
+            if (scrollTop > lastScrollTop && scrollTop > 80) {
+              // Scroll hacia abajo
+              headerWave.style.transform = "translateY(-100%)";
+            } else {
+              // Scroll hacia arriba o en la parte superior
+              headerWave.style.transform = "translateY(0)";
+            }
+
+            lastScrollTop = scrollTop;
+          });
+
+          if (window.initQuickProfile) window.initQuickProfile();
+        });
+    </script>
+    <script>
+      // Cargar el header
+      fetch("/src/components/header/header.html")
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("header-container").innerHTML = data;
+          // Inicializar el menú después de cargar el header
+          if (window.initHeaderMenu) {
+            window.initHeaderMenu();
+          }
+        })
+        .catch((error) => console.error("Error loading header:", error));
+    </script>
+  </body>
+</html>

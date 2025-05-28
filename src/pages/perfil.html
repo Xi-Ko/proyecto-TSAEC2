@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Perfil de usuario - TSAEC</title>
+    <link rel="stylesheet" href="/src/components/header/header.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <style>
+      body {
+        background-image: url(/src/assets/images/background-acerca2.webp);
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        min-height: 100vh;
+        margin: 0;
+        font-family: system-ui, sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        padding-top: 90px;
+      }
+      .perfil-container {
+        background: #fff;
+        border-radius: 18px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.13);
+        padding: 36px 28px 28px 28px;
+        max-width: 420px;
+        width: 100%;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .perfil-avatar {
+        width: 90px;
+        height: 90px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 3px solid #27ae60;
+        margin-bottom: 10px;
+        background: #f3f3f3;
+      }
+      .perfil-avatar-input {
+        display: none;
+      }
+      .perfil-avatar-label {
+        color: #229954;
+        font-size: 0.98rem;
+        cursor: pointer;
+        margin-bottom: 10px;
+        text-decoration: underline;
+      }
+      .perfil-form {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin-bottom: 18px;
+      }
+      .perfil-form label {
+        font-weight: 500;
+        color: #229954;
+        margin-bottom: 2px;
+      }
+      .perfil-form input,
+      .perfil-form textarea,
+      .perfil-form select {
+        width: 100%;
+        padding: 8px;
+        border-radius: 7px;
+        border: 1px solid #b7b7b7;
+        font-size: 1rem;
+        margin-bottom: 6px;
+        background: #f8fafb;
+      }
+      .perfil-form textarea {
+        resize: vertical;
+        min-height: 48px;
+        max-height: 120px;
+      }
+      .perfil-save-btn {
+        margin-top: 10px;
+        padding: 12px 0;
+        background: #2f7c58;
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        font-size: 1.08rem;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+      .perfil-save-btn:hover {
+        background: #229954;
+      }
+      .perfil-stats {
+        margin: 18px 0 10px 0;
+        color: #444;
+        font-size: 1.05rem;
+        text-align: center;
+      }
+      .perfil-logros {
+        margin-top: 18px;
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        justify-content: center;
+      }
+      .logro {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: #e9ecef;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        color: #b7b7b7;
+        border: 2px solid #b7b7b7;
+        position: relative;
+        transition: border 0.2s, color 0.2s;
+      }
+      .logro.desbloqueado {
+        color: #27ae60;
+        border: 2px solid #27ae60;
+        background: #eaffea;
+      }
+      .logro .logro-tooltip {
+        display: none;
+        position: absolute;
+        bottom: 110%;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #222;
+        color: #fff;
+        padding: 6px 12px;
+        border-radius: 7px;
+        font-size: 0.92rem;
+        white-space: nowrap;
+        z-index: 10;
+      }
+      .logro:hover .logro-tooltip {
+        display: block;
+      }
+      .volver-btn {
+        margin-top: 24px;
+        padding: 10px 18px;
+        background: #b7b7b7;
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+      .volver-btn:hover {
+        background: #888;
+      }
+    </style>
+  </head>
+  <body>
+    <header id="header-container"></header>
+    <main>
+      <div class="perfil-container">
+        <img
+          src="/src/assets/images/missa.webp"
+          alt="Avatar"
+          class="perfil-avatar"
+          id="perfilAvatar"
+        />
+        <label for="avatarInput" class="perfil-avatar-label"
+          >Cambiar avatar</label
+        >
+        <input
+          type="file"
+          id="avatarInput"
+          class="perfil-avatar-input"
+          accept="image/*"
+        />
+        <form class="perfil-form" autocomplete="off">
+          <label for="nombre">Nombre</label>
+          <input type="text" id="nombre" name="nombre" maxlength="32" />
+          <label for="correo">Correo electrónico</label>
+          <input type="email" id="correo" name="correo" maxlength="64" />
+          <label for="bio">Bio</label>
+          <textarea id="bio" name="bio" maxlength="120"></textarea>
+          <button type="submit" class="perfil-save-btn">Guardar cambios</button>
+        </form>
+        <div class="perfil-stats" id="perfilStats"></div>
+        <div class="perfil-logros" id="perfilLogros"></div>
+        <button class="volver-btn" onclick="window.history.back()">
+          Volver
+        </button>
+      </div>
+    </main>
+    <script src="/src/components/header/header.js"></script>
+    <script>
+      // Cargar header dinámico y luego inicializar menú y perfil
+      fetch("/src/components/header/header.html")
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("header-container").innerHTML = data;
+          // Inicializar después de que el DOM se actualice
+          requestAnimationFrame(() => {
+            if (window.initHeaderMenu) window.initHeaderMenu();
+            if (window.initQuickProfile) window.initQuickProfile();
+          });
+        });
+      // Cargar datos de usuario
+      function cargarPerfil() {
+        const avatar =
+          localStorage.getItem("user_avatar") ||
+          "/src/assets/images/missa.webp";
+        const nombre = localStorage.getItem("user_nombre") || "Usuario TSAEC";
+        const correo = localStorage.getItem("user_correo") || "";
+        const bio = localStorage.getItem("user_bio") || "";
+        const color = localStorage.getItem("user_color") || "#27ae60";
+        document.getElementById("perfilAvatar").src = avatar;
+        document.getElementById("nombre").value = nombre;
+        document.getElementById("correo").value = correo;
+        document.getElementById("bio").value = bio;
+        document.getElementById("color").value = color;
+        // Estadísticas
+        const comentarios = Number(
+          localStorage.getItem("user_comentarios") || 0
+        );
+        const apoyos = Number(localStorage.getItem("user_apoyos") || 0);
+        const sugerencias = Number(
+          localStorage.getItem("user_sugerencias") || 0
+        );
+        document.getElementById(
+          "perfilStats"
+        ).innerHTML = `<b>${comentarios}</b> comentarios<br><b>${apoyos}</b> apoyos<br><b>${sugerencias}</b> sugerencias`;
+        // Logros
+        const logros = [
+          {
+            id: "primer_comentario",
+            icon: "💬",
+            nombre: "Primer comentario",
+            desc: "¡Publica tu primer comentario!",
+            unlocked: comentarios > 0,
+          },
+          {
+            id: "cinco_apoyos",
+            icon: "🌱",
+            nombre: "5 apoyos",
+            desc: "Recibe 5 apoyos en tus comentarios.",
+            unlocked: apoyos >= 5,
+          },
+          {
+            id: "tres_sugerencias",
+            icon: "✨",
+            nombre: "3 sugerencias",
+            desc: "Envía 3 sugerencias.",
+            unlocked: sugerencias >= 3,
+          },
+          {
+            id: "usuario_activo",
+            icon: "🌟",
+            nombre: "Usuario activo",
+            desc: "Participa 3 días seguidos.",
+            unlocked: false,
+          },
+        ];
+        document.getElementById("perfilLogros").innerHTML = logros
+          .map(
+            (l) =>
+              `<div class="logro${l.unlocked ? " desbloqueado" : ""}" title="${
+                l.nombre
+              }">
+          ${l.icon}
+          <span class="logro-tooltip">${l.nombre}<br>${l.desc}</span>
+        </div>`
+          )
+          .join("");
+      }
+      cargarPerfil();
+      // Guardar cambios
+      document.querySelector(".perfil-form").onsubmit = function (e) {
+        e.preventDefault();
+        localStorage.setItem(
+          "user_nombre",
+          document.getElementById("nombre").value.trim() || "Usuario TSAEC"
+        );
+        localStorage.setItem(
+          "user_correo",
+          document.getElementById("correo").value.trim()
+        );
+        localStorage.setItem(
+          "user_bio",
+          document.getElementById("bio").value.trim()
+        );
+        localStorage.setItem(
+          "user_color",
+          document.getElementById("color").value
+        );
+        alert("¡Perfil guardado!");
+        cargarPerfil();
+      };
+      // Cambiar avatar
+      document.getElementById("avatarInput").onchange = function (e) {
+        const file = e.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = function (ev) {
+          localStorage.setItem("user_avatar", ev.target.result);
+          cargarPerfil();
+        };
+        reader.readAsDataURL(file);
+      };
+      document.querySelector(".perfil-avatar-label").onclick = function () {
+        document.getElementById("avatarInput").click();
+      };
+    </script>
+  </body>
+</html>

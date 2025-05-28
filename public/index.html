@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      TSAEC - Transportes Sustentables Alternativas Ecológicas para Calama
+    </title>
+    <link rel="stylesheet" href="/src/styles/style.css" />
+    <link rel="stylesheet" href="/src/components/header/header.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="ocean-overlay"></div>
+
+    <!-- Include Header -->
+    <header
+      id="header-container"
+      role="banner"
+      aria-label="Barra de navegación principal"
+    ></header>
+
+    <main class="container">
+      <section class="hero-section glass-card">
+        <h1>Bienvenido a TSAEC</h1>
+        <p class="subtitle">
+          Transportes Sustentables Alternativas Ecológicas para Calama
+        </p>
+        <p class="description">
+          Transformando la movilidad de nuestra ciudad hacia un futuro más verde
+          y sustentable
+        </p>
+      </section>
+
+      <section class="features-section">
+        <div class="feature-card glass-card">
+          <i class="fas fa-leaf feature-icon"></i>
+          <h2>Movilidad Sustentable</h2>
+          <p>Descubre alternativas ecológicas para moverte por Calama</p>
+          <a href="/src/pages/explorar.html" class="cta-button"
+            >Explorar Opciones</a
+          >
+        </div>
+
+        <div class="feature-card glass-card">
+          <i class="fas fa-users feature-icon"></i>
+          <h2>Únete al Cambio</h2>
+          <p>Sé parte de la transformación hacia una ciudad más limpia</p>
+          <a href="/src/pages/documento.html" class="cta-button">Unirse</a>
+        </div>
+
+        <div class="feature-card glass-card">
+          <i class="fas fa-seedling feature-icon"></i>
+          <h2>Nuestro Proyecto</h2>
+          <p>Conoce más sobre nuestra misión y visión</p>
+          <a href="/src/pages/acerca.html" class="cta-button">Saber Más</a>
+        </div>
+
+        <div class="feature-card glass-card">
+          <i class="fas fa-people-group feature-icon"></i>
+          <h2>Equipo</h2>
+          <p>Conoce a las personas detrás de TSAEC</p>
+          <a href="/src/pages/equipo.html" class="cta-button">Ver Equipo</a>
+        </div>
+      </section>
+
+      <section class="impact-section glass-card">
+        <h2>Nuestro Impacto</h2>
+        <div class="impact-stats">
+          <div class="stat">
+            <i class="fas fa-bicycle"></i>
+            <h3>30%</h3>
+            <p>Reducción de emisiones</p>
+          </div>
+          <div class="stat">
+            <i class="fas fa-users"></i>
+            <p>+1000</p>
+            <p>Usuarios activos</p>
+          </div>
+          <div class="stat">
+            <i class="fas fa-leaf"></i>
+            <p>50%</p>
+            <p>Menos contaminación</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="glass-card">
+        <h2><i class="fas fa-user-plus"></i> Registros</h2>
+        <p id="register-counter">Próximamente: contador de registros activos</p>
+      </section>
+    </main>
+
+    <footer class="main-footer">
+      <div class="social-links">
+        <a
+          href="https://www.instagram.com/tsaec_calama?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+          ><i class="fab fa-instagram"></i
+        ></a>
+        <a href="#"><i class="fab fa-facebook"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+      </div>
+      <p>&copy; 2025 TSAEC. Todos los derechos reservados.</p>
+      <!-- Contador de visitas personalizado -->
+      <div class="visit-counter glass-card">
+        <i class="fas fa-eye"></i>
+        <div class="counter-container">
+          <span class="counter-label">Visitas</span>
+          <span class="counter-number" id="visitCount">0</span>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="/src/components/header/header.js"></script>
+    <script>
+      // Definir initQuickProfile en el scope global
+      window.initQuickProfile = function () {
+        const userStats = JSON.parse(
+          localStorage.getItem("tsaec_userstats") || "{}"
+        );
+        const userId = localStorage.getItem("tsaec_userid");
+        const profileButton = document.querySelector(".quick-profile");
+
+        if (profileButton && userId && userStats[userId]) {
+          const stats = userStats[userId];
+          const commentCount = profileButton.querySelector(".comment-count");
+          const supportCount = profileButton.querySelector(".support-count");
+          if (commentCount) commentCount.textContent = stats.comments || 0;
+          if (supportCount) supportCount.textContent = stats.supports || 0;
+        }
+      };
+
+      // Cargar header y configurar menú cuando el DOM esté listo
+      document.addEventListener("DOMContentLoaded", function () {
+        // Load header and initialize menu
+        fetch("/src/components/header/header.html")
+          .then((response) => response.text())
+          .then((data) => {
+            document.getElementById("header-container").innerHTML = data;
+
+            // Esperar a que los elementos del header estén en el DOM
+            requestAnimationFrame(() => {
+              // Inicializar el menú y el perfil rápido
+              if (typeof window.initHeaderMenu === "function") {
+                window.initHeaderMenu();
+              }
+              if (typeof window.initQuickProfile === "function") {
+                window.initQuickProfile();
+              }
+
+              // Animación del header al hacer scroll
+              const headerWave = document.querySelector(".header-wave");
+              if (headerWave) {
+                let lastScrollTop = 0;
+                window.addEventListener("scroll", () => {
+                  const scrollTop =
+                    window.pageYOffset || document.documentElement.scrollTop;
+                  if (scrollTop > lastScrollTop && scrollTop > 80) {
+                    // Scroll hacia abajo
+                    headerWave.style.transform = "translateY(-100%)";
+                  } else {
+                    // Scroll hacia arriba o en la parte superior
+                    headerWave.style.transform = "translateY(0)";
+                  }
+                  lastScrollTop = scrollTop;
+                });
+              }
+            });
+          })
+          .catch((error) => console.error("Error loading header:", error));
+      });
+
+      // Contador de visitas
+      const counterContainer = document.querySelector("#visitCount");
+      let visitCount = localStorage.getItem("page_view");
+
+      if (visitCount) {
+        visitCount = Number(visitCount) + 1;
+        localStorage.setItem("page_view", visitCount);
+      } else {
+        visitCount = 1;
+        localStorage.setItem("page_view", 1);
+      }
+      if (counterContainer) {
+        counterContainer.innerHTML = visitCount;
+      }
+    </script>
+  </body>
+</html>

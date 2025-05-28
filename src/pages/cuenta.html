@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cuenta - TSAEC</title>
+    <link rel="stylesheet" href="/src/styles/cuenta.css" />
+    <link rel="stylesheet" href="/src/components/header/header.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- Header Container -->
+    <div id="header-container"></div>
+
+    <div class="form-container">
+      <div class="car-container">
+        <img
+          src="/src/assets/images/auto-electrico.webp"
+          alt="Auto eléctrico"
+          class="electric-car"
+          id="carHome"
+        />
+        <div class="car-bubble">
+          <p>Presióname para regresar a casa 🏠</p>
+          <div class="bubble-arrow"></div>
+        </div>
+      </div>
+    </div>
+    <div class="form-container">
+      <!-- Burbuja de mensaje Google -->
+      <div class="message-bubble google-bubble">
+        <img
+          src="/src/assets/images/missa.webp"
+          alt="Missa"
+          class="profile-pic"
+        />
+        <div class="bubble-content">
+          <p>¡Hola! 👋 Puedes iniciar sesión más rápido con Google</p>
+          <button class="google-btn">
+            <img
+              src="/src/assets/images/google-icon.webp"
+              alt="Google"
+            />
+            Iniciar con Google
+          </button>
+        </div>
+        <div class="bubble-arrow"></div>
+      </div>
+
+      <!-- Contenedor del formulario -->
+      <div class="phone-container">
+        <img
+          src="/src/assets/images/mano-trasera.webp"
+          alt="Mano trasera"
+          class="hand back-hand"
+        />
+        <div class="phone-wrapper">
+          <img
+            src="/src/assets/images/celular.webp"
+            alt="Celular"
+            class="phone"
+          />
+          <form class="registro-form">
+            <h2>Registro</h2>
+
+            <div class="form-group">
+              <label for="usuario">Nombre de usuario:</label>
+              <input type="text" id="usuario" name="usuario" />
+              <p class="error" id="error-usuario"></p>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Correo electrónico:</label>
+              <input type="email" id="email" name="email" />
+              <p class="error" id="error-email"></p>
+            </div>
+
+            <div class="form-group">
+              <label for="contrasena">Contraseña:</label>
+              <input type="password" id="contrasena" name="contrasena" />
+              <p class="error" id="error-contrasena"></p>
+            </div>
+
+            <div class="form-group">
+              <label for="confirmar-contrasena">Confirmar contraseña:</label>
+              <input
+                type="password"
+                id="confirmar-contrasena"
+                name="confirmar-contrasena"
+              />
+              <p class="error" id="error-confirmar-contrasena"></p>
+            </div>
+
+            <button type="submit" class="submit-btn">Registrar</button>
+            <p class="success" id="exito"></p>
+            <p class="error" id="error"></p>
+            <p class="switch-form-link">
+              <a href="#" id="show-login">¿Ya tienes cuenta? Iniciar sesión</a>
+            </p>
+          </form>
+          <form class="login-form" style="display: none">
+            <h2>Iniciar sesión</h2>
+            <div class="form-group">
+              <label for="login-email">Correo electrónico:</label>
+              <input type="email" id="login-email" name="login-email" />
+              <p class="error" id="login-error-email"></p>
+            </div>
+            <div class="form-group">
+              <label for="login-contrasena">Contraseña:</label>
+              <input
+                type="password"
+                id="login-contrasena"
+                name="login-contrasena"
+              />
+              <p class="error" id="login-error-contrasena"></p>
+            </div>
+            <button type="submit" class="submit-btn">Iniciar sesión</button>
+            <p class="error" id="login-error"></p>
+            <p class="switch-form-link">
+              <a href="#" id="show-register">¿No tienes cuenta? Registrarse</a>
+            </p>
+          </form>
+        </div>
+        <img
+          src="/src/assets/images/mano-delantera.webp"
+          alt="Mano delantera"
+          class="hand front-hand"
+        />
+      </div>
+
+      <!-- Burbuja de error -->
+      <div class="message-bubble error-bubble">
+        <img
+          src="/src/assets/images/missa.webp"
+          alt="Missa"
+          class="profile-pic"
+        />
+        <div class="bubble-content">
+          <p id="error-message"></p>
+        </div>
+        <div class="bubble-arrow"></div>
+      </div>
+    </div>
+
+    <script>
+      const form = document.querySelector(".registro-form");
+      const loginForm = document.querySelector(".login-form");
+      const errorBubble = document.querySelector(".error-bubble");
+      const googleBubble = document.querySelector(".google-bubble");
+
+      // Mostrar el mensaje de Google al cargar la página
+      document.addEventListener("DOMContentLoaded", () => {
+        showGoogleBubble();
+      });
+
+      // Función para verificar si el formulario está vacío
+      function isFormEmpty() {
+        const usuario = document.getElementById("usuario").value;
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("contrasena").value;
+        const confirmPassword = document.getElementById(
+          "confirmar-contrasena"
+        ).value;
+
+        return !usuario && !email && !password && !confirmPassword;
+      }
+
+      // Escuchar cambios en los inputs del formulario
+      form.querySelectorAll("input").forEach((input) => {
+        input.addEventListener("input", () => {
+          if (isFormEmpty()) {
+            showGoogleBubble();
+          } else {
+            hideGoogleBubble();
+          }
+        });
+      });
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        const usuario = document.getElementById("usuario").value;
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("contrasena").value;
+        const confirmPassword = document.getElementById(
+          "confirmar-contrasena"
+        ).value;
+
+        if (!usuario) {
+          showErrorMessage(
+            "¡Ops! Parece que olvidaste tu nombre de usuario 😅"
+          );
+          return;
+        }
+
+        if (!email) {
+          showErrorMessage("¡Hey! Necesito tu correo electrónico 📧");
+          return;
+        }
+
+        if (!password) {
+          showErrorMessage("¡Ups! La contraseña es obligatoria 🔑");
+          return;
+        }
+
+        if (password !== confirmPassword) {
+          showErrorMessage("Las contraseñas no coinciden 🔐");
+          return;
+        }
+      });
+
+      function showErrorMessage(message) {
+        const errorMessage = document.getElementById("error-message");
+        errorMessage.textContent = message;
+        errorBubble.classList.add("show");
+
+        setTimeout(() => {
+          errorBubble.style.animation = "fadeOut 0.5s ease forwards";
+          setTimeout(() => {
+            errorBubble.classList.remove("show");
+            errorBubble.style.animation = "";
+          }, 500);
+        }, 4000);
+      }
+
+      function showGoogleBubble() {
+        googleBubble.classList.add("show");
+      }
+
+      function hideGoogleBubble() {
+        googleBubble.classList.remove("show");
+      }
+
+      const car = document.getElementById("carHome");
+      const carBubble = document.querySelector(".car-bubble");
+
+      car.addEventListener("click", () => {
+        window.location.href = "/public/index.html";
+      });
+
+      car.addEventListener("mouseenter", () => {
+        carBubble.classList.add("show");
+      });
+
+      car.addEventListener("mouseleave", () => {
+        carBubble.classList.remove("show");
+      });
+
+      // Cambiar entre registro y login sin animación
+      function switchToLogin() {
+        form.style.display = "none";
+        loginForm.style.display = "block";
+      }
+      function switchToRegister() {
+        loginForm.style.display = "none";
+        form.style.display = "block";
+      }
+      document.getElementById("show-login").onclick = function (e) {
+        e.preventDefault();
+        switchToLogin();
+      };
+      document.getElementById("show-register").onclick = function (e) {
+        e.preventDefault();
+        switchToRegister();
+      };
+      // Validación simple para login
+      loginForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+        const email = document.getElementById("login-email").value;
+        const password = document.getElementById("login-contrasena").value;
+        let hasError = false;
+        document.getElementById("login-error-email").textContent = "";
+        document.getElementById("login-error-contrasena").textContent = "";
+        document.getElementById("login-error").textContent = "";
+        if (!email) {
+          document.getElementById("login-error-email").textContent =
+            "Ingresa tu correo electrónico.";
+          hasError = true;
+        }
+        if (!password) {
+          document.getElementById("login-error-contrasena").textContent =
+            "Ingresa tu contraseña.";
+          hasError = true;
+        }
+        if (!hasError) {
+          document.getElementById("login-error").textContent =
+            "(Demo) Inicio de sesión exitoso.";
+        }
+      });
+    </script>
+    <script src="/src/components/header/header.js"></script>
+  </body>
+</html>

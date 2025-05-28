@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Comentarios - TSAEC</title>
+    <meta
+      name="description"
+      content="Deja tus comentarios y sugerencias sobre movilidad sustentable en Calama. Participa y apoya ideas de otros usuarios."
+    />
+    <meta property="og:title" content="Comentarios - TSAEC" />
+    <meta
+      property="og:description"
+      content="Deja tus comentarios y sugerencias sobre movilidad sustentable en Calama. Participa y apoya ideas de otros usuarios."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_CL" />
+    <link rel="stylesheet" href="/src/styles/comentarios.css" />
+    <link rel="stylesheet" href="/src/components/header/header.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="ocean-overlay"></div>
+    <header
+      id="header-container"
+      role="banner"
+      aria-label="Barra de navegación principal"
+    ></header>
+    <main class="comments-main" id="main-content" tabindex="-1">
+      <section class="comments-hero" aria-label="Encabezado de comentarios">
+        <h1>
+          <i class="fas fa-comments" aria-hidden="true"></i> Comentarios y
+          Sugerencias
+        </h1>
+        <p class="subtitle">
+          Tu opinión es importante para mejorar la movilidad en Calama
+        </p>
+      </section>
+      <section
+        class="comment-form-section"
+        aria-label="Formulario de comentarios"
+      >
+        <form id="commentForm" class="comment-form" autocomplete="off">
+          <h2>Envíanos tu comentario</h2>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Nombre</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                required
+                aria-required="true"
+              />
+            </div>
+            <div class="form-group">
+              <label for="email">Correo electrónico</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                required
+                aria-required="true"
+              />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="category">Categoría</label>
+              <select
+                id="category"
+                name="category"
+                required
+                aria-required="true"
+              >
+                <option value="">Selecciona una categoría</option>
+                <option value="sugerencia">Sugerencia</option>
+                <option value="reporte">Reporte de problema</option>
+                <option value="felicitacion">Felicitación</option>
+                <option value="otro">Otro</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="comment">Comentario</label>
+              <textarea
+                id="comment"
+                name="comment"
+                rows="3"
+                required
+                aria-required="true"
+              ></textarea>
+            </div>
+          </div>
+          <button type="submit" class="btn-submit">
+            <i class="fas fa-paper-plane" aria-hidden="true"></i> Enviar
+            comentario
+          </button>
+        </form>
+      </section>
+      <section
+        class="comments-list-section"
+        aria-label="Lista de comentarios recientes"
+      >
+        <div class="comments-list-header">
+          <h2>
+            <i class="fas fa-list" aria-hidden="true"></i> Comentarios recientes
+          </h2>
+          <select
+            id="orderSelect"
+            class="order-select"
+            aria-label="Ordenar comentarios"
+          >
+            <option value="recent">Más recientes</option>
+            <option value="support">Más apoyados</option>
+            <option value="oldest">Más antiguos</option>
+          </select>
+        </div>
+        <div class="comments-list" id="commentsList" aria-live="polite">
+          <!-- Comentarios se insertan aquí -->
+        </div>
+      </section>
+      <section class="faq-section" aria-label="Preguntas frecuentes">
+        <h2>
+          <i class="fas fa-question-circle" aria-hidden="true"></i> Preguntas
+          frecuentes
+        </h2>
+        <div class="faq-list">
+          <div class="faq-item">
+            <div class="faq-question">
+              ¿Cómo puedo reportar un problema en las ciclovías?
+              <i class="fas fa-chevron-down" aria-hidden="true"></i>
+            </div>
+            <div class="faq-answer">
+              Puedes reportar problemas en las ciclovías a través de nuestro
+              formulario de comentarios, seleccionando la categoría "Reporte de
+              problema". También puedes contactarnos directamente a través de
+              nuestras redes sociales.
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">
+              ¿Cuánto tiempo tardan en responder los comentarios?
+              <i class="fas fa-chevron-down" aria-hidden="true"></i>
+            </div>
+            <div class="faq-answer">
+              Nos esforzamos por responder todos los comentarios en un plazo de
+              24-48 horas hábiles. Los reportes de problemas son atendidos con
+              prioridad.
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">
+              ¿Puedo sugerir nuevas rutas de ciclovías?
+              <i class="fas fa-chevron-down" aria-hidden="true"></i>
+            </div>
+            <div class="faq-answer">
+              ¡Por supuesto! Las sugerencias de nuevas rutas son muy
+              bienvenidas. Puedes enviar tu propuesta a través del formulario de
+              comentarios, incluyendo detalles sobre la ubicación y el motivo de
+              tu sugerencia.
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="main-footer" role="contentinfo">
+      <div class="social-links" aria-label="Redes sociales">
+        <a
+          href="https://www.instagram.com/tsaec_calama?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+          aria-label="Instagram"
+          ><i class="fab fa-instagram" aria-hidden="true"></i
+        ></a>
+        <a href="#" aria-label="Facebook"
+          ><i class="fab fa-facebook" aria-hidden="true"></i
+        ></a>
+        <a href="#" aria-label="Twitter"
+          ><i class="fab fa-twitter" aria-hidden="true"></i
+        ></a>
+      </div>
+      <p>&copy; 2025 TSAEC. Todos los derechos reservados.</p>
+    </footer>
+    <script src="/src/components/header/header.js"></script>
+    <script>
+      // Header dinámico y menú
+      fetch("/src/components/header/header.html")
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("header-container").innerHTML = data;
+          if (window.initHeaderMenu) window.initHeaderMenu();
+          if (window.initQuickProfile) window.initQuickProfile();
+        });
+
+      function initHeaderMenu() {
+        const menuToggle = document.querySelector(".menu-toggle");
+        const navLinks = document.querySelector(".nav-links");
+        const header = document.querySelector(".header-wave");
+        if (!menuToggle || !navLinks || !header) return;
+        menuToggle.addEventListener("click", function () {
+          menuToggle.classList.toggle("active");
+          navLinks.classList.toggle("active");
+        });
+        document.addEventListener("click", function (event) {
+          const isClickInside = header.contains(event.target);
+          if (!isClickInside && navLinks.classList.contains("active")) {
+            menuToggle.classList.remove("active");
+            navLinks.classList.remove("active");
+          }
+        });
+        navLinks.querySelectorAll("a").forEach((link) => {
+          link.addEventListener("click", function () {
+            menuToggle.classList.remove("active");
+            navLinks.classList.remove("active");
+          });
+        });
+      }
+
+      // Utilidades para comentarios
+      const commentsList = document.getElementById("commentsList");
+      const commentForm = document.getElementById("commentForm");
+      const orderSelect = document.getElementById("orderSelect");
+      let editingIndex = null;
+      let replyingTo = null;
+      function getComments() {
+        return JSON.parse(localStorage.getItem("tsaec_comments") || "[]");
+      }
+      function setComments(comments) {
+        localStorage.setItem("tsaec_comments", JSON.stringify(comments));
+      }
+      function getSupports() {
+        return JSON.parse(localStorage.getItem("tsaec_supports") || "{}");
+      }
+      function setSupports(supports) {
+        localStorage.setItem("tsaec_supports", JSON.stringify(supports));
+      }
+      function getUserId() {
+        // Simple user id por navegador
+        let id = localStorage.getItem("tsaec_userid");
+        if (!id) {
+          id = "user-" + Math.random().toString(36).substr(2, 9);
+          localStorage.setItem("tsaec_userid", id);
+        }
+        return id;
+      }
+      function getUserStats() {
+        return JSON.parse(localStorage.getItem("tsaec_userstats") || "{}");
+      }
+      function setUserStats(stats) {
+        localStorage.setItem("tsaec_userstats", JSON.stringify(stats));
+      }
+      function updateUserStats(userId, type) {
+        const stats = getUserStats();
+        stats[userId] = stats[userId] || { comments: 0, supports: 0 };
+        stats[userId][type]++;
+        setUserStats(stats);
+      }
+      function createModal(content, onClose) {
+        let modalBg = document.createElement("div");
+        modalBg.className = "modal-bg";
+        let modal = document.createElement("div");
+        modal.className = "modal-content";
+        modal.innerHTML = content;
+        modalBg.appendChild(modal);
+        document.body.appendChild(modalBg);
+        function closeModal() {
+          modalBg.remove();
+          if (onClose) onClose();
+        }
+        modalBg.addEventListener("click", (e) => {
+          if (e.target === modalBg) closeModal();
+        });
+        modal
+          .querySelectorAll(".modal-close")
+          .forEach((btn) => (btn.onclick = closeModal));
+        return { close: closeModal, modalBg, modal };
+      }
+      function showDeleteConfirm(idx, isReply, replyIdx) {
+        const content = `
+          <h3>¿Seguro que quieres borrar este ${
+            isReply ? "respuesta" : "comentario"
+          }?</h3>
+          <div class='modal-actions'>
+            <button class='modal-close btn-cancel'>Cancelar</button>
+            <button class='btn-confirm'>Borrar</button>
+          </div>
+        `;
+        const { close, modalBg } = createModal(content);
+        modalBg.querySelector(".btn-confirm").onclick = function () {
+          let comments = getComments();
+          if (isReply) {
+            comments[idx].replies.splice(replyIdx, 1);
+          } else {
+            comments.splice(idx, 1);
+          }
+          setComments(comments);
+          renderComments();
+          close();
+        };
+      }
+      function showReportModal(idx) {
+        const content = `
+          <h3>Reportar comentario</h3>
+          <form class='report-form'>
+            <label>Motivo:<br><input type='text' name='motivo' required placeholder='Describe el motivo...'></label><br>
+            <label>Tipo de reporte:<br>
+              <select name='tipo' required>
+                <option value=''>Selecciona</option>
+                <option value='ofensivo'>Ofensivo</option>
+                <option value='spam'>Spam</option>
+                <option value='otro'>Otro</option>
+              </select>
+            </label><br>
+            <div class='modal-actions'>
+              <button type='button' class='modal-close btn-cancel'>Cancelar</button>
+              <button type='submit' class='btn-confirm'>Reportar</button>
+            </div>
+          </form>
+        `;
+        const { close, modalBg } = createModal(content);
+        modalBg.querySelector(".report-form").onsubmit = function (e) {
+          e.preventDefault();
+          close();
+          createModal(
+            '<h3>¡Gracias por tu reporte!</h3><div class="modal-actions"><button class="modal-close btn-cancel">Cerrar</button></div>'
+          );
+        };
+      }
+      function renderComments() {
+        let comments = getComments();
+        // Ordenar
+        if (orderSelect.value === "recent") {
+          comments = comments.sort(
+            (a, b) => new Date(b.date) - new Date(a.date)
+          );
+        } else if (orderSelect.value === "oldest") {
+          comments = comments.sort(
+            (a, b) => new Date(a.date) - new Date(b.date)
+          );
+        } else if (orderSelect.value === "support") {
+          comments = comments.sort(
+            (a, b) => (b.supports || 0) - (a.supports || 0)
+          );
+        }
+        // Encuentra el índice del comentario con más apoyos
+        let maxSupport = -1,
+          maxIndex = -1;
+        comments.forEach((c, i) => {
+          if ((c.supports || 0) > maxSupport) {
+            maxSupport = c.supports || 0;
+            maxIndex = i;
+          }
+        });
+        commentsList.innerHTML = comments.length
+          ? comments
+              .map((c, i) =>
+                renderCommentCard(c, i, i === maxIndex && maxSupport > 0)
+              )
+              .join("")
+          : "<p class='no-comments'>No hay comentarios aún.</p>";
+        // Eventos de apoyo
+        document.querySelectorAll(".support-btn").forEach((btn) => {
+          btn.addEventListener("click", function () {
+            const idx = parseInt(this.getAttribute("data-index"));
+            const supports = getSupports();
+            const userId = getUserId();
+            if (supports[idx] && supports[idx].includes(userId)) return;
+            let comments = getComments();
+            comments[idx].supports = (comments[idx].supports || 0) + 1;
+            setComments(comments);
+            supports[idx] = supports[idx] || [];
+            supports[idx].push(userId);
+            setSupports(supports);
+            updateUserStats(userId, "supports");
+            renderComments();
+          });
+        });
+        // Eventos de responder
+        document.querySelectorAll(".reply-btn").forEach((btn) => {
+          btn.addEventListener("click", function () {
+            replyingTo = parseInt(this.getAttribute("data-index"));
+            showReplyForm(replyingTo);
+          });
+        });
+        // Eventos de editar
+        document.querySelectorAll(".edit-btn").forEach((btn) => {
+          btn.addEventListener("click", function () {
+            editingIndex = parseInt(this.getAttribute("data-index"));
+            showEditForm(editingIndex);
+          });
+        });
+        // Eventos de borrar
+        document.querySelectorAll(".delete-btn").forEach((btn) => {
+          btn.addEventListener("click", function () {
+            const idx = parseInt(this.getAttribute("data-index"));
+            showDeleteConfirm(idx, false);
+          });
+        });
+        // Eventos de borrar respuesta
+        document.querySelectorAll(".delete-reply-btn").forEach((btn) => {
+          btn.addEventListener("click", function () {
+            const idx = parseInt(this.getAttribute("data-index"));
+            const ri = parseInt(this.getAttribute("data-reply-index"));
+            showDeleteConfirm(idx, true, ri);
+          });
+        });
+        // Eventos de reportar
+        document.querySelectorAll(".report-btn").forEach((btn) => {
+          btn.addEventListener("click", function () {
+            const idx = parseInt(this.getAttribute("data-index"));
+            showReportModal(idx);
+          });
+        });
+      }
+      function renderCommentCard(c, i, mostSupported) {
+        const userId = getUserId();
+        const supports = getSupports();
+        const hasSupported = supports[i] && supports[i].includes(userId);
+        const stats = getUserStats();
+        let userBadge = "";
+        if (stats[c.userId] && stats[c.userId].comments >= 3)
+          userBadge =
+            '<span class="user-badge" title="Usuario activo">🌟</span>';
+        let mostSupportedBadge = mostSupported
+          ? '<span class="most-supported-badge" title="Más apoyado">🏆</span>'
+          : "";
+        let repliesHtml = "";
+        if (c.replies && c.replies.length) {
+          repliesHtml = `<div class='replies'>${c.replies
+            .map(
+              (r, ri) => `
+            <div class='reply-card'>
+              <span class='reply-author'><i class='fas fa-reply'></i> ${
+                r.name
+              }:</span>
+              <span class='reply-content'>${r.comment}</span>
+              ${
+                r.userId === getUserId()
+                  ? `<div class='reply-menu'>
+                      <button class='kebab-btn' title='Opciones' data-idx='${i}' data-reply-idx='${ri}'><i class='fas fa-ellipsis-v'></i></button>
+                      <div class='kebab-menu' style='display:none;'>
+                        <button class='delete-reply-btn' data-index='${i}' data-reply-index='${ri}' title='Borrar respuesta'><i class='fas fa-trash'></i> Borrar</button>
+                      </div>
+                    </div>`
+                  : ""
+              }
+            </div>`
+            )
+            .join("")}</div>`;
+        }
+        // Solo mostrar editar/eliminar si el comentario es del usuario actual
+        let menuOptions = "";
+        if (c.userId === userId) {
+          menuOptions += `<button class='edit-btn' data-index='${i}' title='Editar'><i class='fas fa-edit'></i> Editar</button>`;
+          menuOptions += `<button class='delete-btn' data-index='${i}' title='Borrar'><i class='fas fa-trash'></i> Borrar</button>`;
+        }
+        menuOptions += `<button class='report-btn' data-index='${i}' title='Reportar'><i class='fas fa-flag'></i> Reportar</button>`;
+        return `<div class='comment-card${
+          mostSupported ? " most-supported" : ""
+        }' data-index='${i}' style='animation: fadeIn 0.5s;'>
+          <div class='comment-header'>
+            <span class='comment-name'><i class='fas fa-user'></i> ${
+              c.name
+            } ${userBadge} ${mostSupportedBadge}</span>
+            <span class='comment-category'>[${c.category}]</span>
+            <div class='comment-menu'>
+              <button class='kebab-btn' title='Opciones' data-idx='${i}'><i class='fas fa-ellipsis-v'></i></button>
+              <div class='kebab-menu' style='display:none;'>
+                ${menuOptions}
+              </div>
+            </div>
+          </div>
+          <div class='comment-content'>${c.comment}</div>
+          <div class='comment-support'>
+            <button class='support-btn' data-index='${i}' ${
+          hasSupported ? "disabled" : ""
+        } title='Apoyar'>
+              <i class='fas fa-seedling'></i> <span class='support-count'>${
+                c.supports || 0
+              }</span> Apoyos
+            </button>
+            <button class='reply-btn' data-index='${i}' title='Responder'><i class='fas fa-reply'></i> Responder</button>
+          </div>
+          ${repliesHtml}
+        </div>`;
+      }
+      function showReplyForm(idx) {
+        const card = document.querySelector(
+          `.comment-card[data-index='${idx}']`
+        );
+        if (!card) return;
+        let replyForm = document.createElement("form");
+        replyForm.className = "reply-form";
+        replyForm.innerHTML = `
+          <input type='text' name='replyName' placeholder='Tu nombre' required />
+          <textarea name='replyComment' placeholder='Tu respuesta' required></textarea>
+          <button type='submit'>Responder</button>
+          <button type='button' class='cancel-reply'>Cancelar</button>
+        `;
+        card.appendChild(replyForm);
+        replyForm.querySelector(".cancel-reply").onclick = () => {
+          replyForm.remove();
+          replyingTo = null;
+        };
+        replyForm.onsubmit = function (e) {
+          e.preventDefault();
+          const name = replyForm.replyName.value.trim();
+          const comment = replyForm.replyComment.value.trim();
+          if (!name || !comment) return;
+          let comments = getComments();
+          comments[idx].replies = comments[idx].replies || [];
+          comments[idx].replies.push({ name, comment, userId: getUserId() });
+          setComments(comments);
+          renderComments();
+        };
+      }
+      function showEditForm(idx) {
+        const card = document.querySelector(
+          `.comment-card[data-index='${idx}']`
+        );
+        if (!card) return;
+        let comments = getComments();
+        let c = comments[idx];
+        let editForm = document.createElement("form");
+        editForm.className = "edit-form";
+        editForm.innerHTML = `
+          <textarea name='editComment' required>${c.comment}</textarea>
+          <button type='submit'>Guardar</button>
+          <button type='button' class='cancel-edit'>Cancelar</button>
+        `;
+        card.appendChild(editForm);
+        editForm.querySelector(".cancel-edit").onclick = () => {
+          editForm.remove();
+          editingIndex = null;
+        };
+        editForm.onsubmit = function (e) {
+          e.preventDefault();
+          const comment = editForm.editComment.value.trim();
+          if (!comment) return;
+          comments[idx].comment = comment;
+          setComments(comments);
+          renderComments();
+        };
+      }
+      const BAD_WORDS = [
+        "tonto",
+        "idiota",
+        "estúpido",
+        "mierda",
+        "puta",
+        "imbécil",
+        "maldito",
+        "pendejo",
+        "gilipollas",
+        "cabron",
+        "joder",
+        "coño",
+        "cabrón",
+        "culiao",
+        "culero",
+        "verga",
+        "puto",
+        "pija",
+        "pendeja",
+        "zorra",
+        "bastardo",
+        "perra",
+      ];
+      function hasBadWords(text) {
+        const lower = text.toLowerCase();
+        return BAD_WORDS.some((word) => lower.includes(word));
+      }
+      function generateCaptcha() {
+        const a = Math.floor(Math.random() * 10) + 1;
+        const b = Math.floor(Math.random() * 10) + 1;
+        return { q: `¿Cuánto es ${a} + ${b}?`, a: (a + b).toString() };
+      }
+      let captcha = generateCaptcha();
+      commentForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+        const name = commentForm.name.value.trim();
+        const email = commentForm.email.value.trim();
+        const category = commentForm.category.value;
+        const comment = commentForm.comment.value.trim();
+        const captchaInput = document
+          .getElementById("captchaInput")
+          .value.trim();
+        if (!name || !email || !category || !comment || !captchaInput) return;
+        if (hasBadWords(comment)) {
+          alert("Tu comentario contiene palabras no permitidas.");
+          return;
+        }
+        if (captchaInput !== captcha.a) {
+          alert("Captcha incorrecto.");
+          captcha = generateCaptcha();
+          document.getElementById("captchaQ").textContent = captcha.q;
+          document.getElementById("captchaInput").value = "";
+          return;
+        }
+        let comments = getComments();
+        comments.unshift({
+          name,
+          email,
+          category,
+          comment,
+          date: new Date().toISOString(),
+          userId: getUserId(),
+          supports: 0,
+          replies: [],
+        });
+        setComments(comments);
+        updateUserStats(getUserId(), "comments");
+        commentForm.reset();
+        captcha = generateCaptcha();
+        document.getElementById("captchaQ").textContent = captcha.q;
+        renderComments();
+      });
+      orderSelect.addEventListener("change", renderComments);
+      renderComments();
+      // FAQ acordeón
+      document.querySelectorAll(".faq-question").forEach((q) => {
+        q.addEventListener("click", function () {
+          this.parentElement.classList.toggle("active");
+        });
+      });
+      function addKebabMenuEvents() {
+        document.querySelectorAll(".kebab-btn").forEach((btn) => {
+          btn.onclick = function (e) {
+            e.stopPropagation();
+            // Cerrar otros menús
+            document
+              .querySelectorAll(".kebab-menu")
+              .forEach((m) => (m.style.display = "none"));
+            const menu = btn.nextElementSibling;
+            if (menu) {
+              menu.style.display =
+                menu.style.display === "block" ? "none" : "block";
+              if (menu.style.display === "block") {
+                setTimeout(() => {
+                  document.addEventListener("click", function handler(ev) {
+                    if (!menu.contains(ev.target) && ev.target !== btn) {
+                      menu.style.display = "none";
+                      document.removeEventListener("click", handler);
+                    }
+                  });
+                }, 0);
+              }
+              // Cerrar menú al hacer click en una opción
+              menu.querySelectorAll("button").forEach((optBtn) => {
+                optBtn.onclick = function (ev) {
+                  menu.style.display = "none";
+                };
+              });
+            }
+          };
+        });
+      }
+      const oldRenderComments = renderComments;
+      renderComments = function () {
+        oldRenderComments();
+        addKebabMenuEvents();
+        // Reemplazar eventos de borrar, editar y reportar
+        document.querySelectorAll(".delete-btn").forEach((btn) => {
+          btn.onclick = function (e) {
+            const idx = parseInt(this.getAttribute("data-index"));
+            showDeleteConfirm(idx, false);
+          };
+        });
+        document.querySelectorAll(".delete-reply-btn").forEach((btn) => {
+          btn.onclick = function (e) {
+            const idx = parseInt(this.getAttribute("data-index"));
+            const ri = parseInt(this.getAttribute("data-reply-index"));
+            showDeleteConfirm(idx, true, ri);
+          };
+        });
+        document.querySelectorAll(".report-btn").forEach((btn) => {
+          btn.onclick = function (e) {
+            const idx = parseInt(this.getAttribute("data-index"));
+            showReportModal(idx);
+          };
+        });
+      };
+    </script>
+  </body>
+</html>
